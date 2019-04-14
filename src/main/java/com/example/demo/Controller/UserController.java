@@ -2,6 +2,7 @@ package com.example.demo.Controller;
 
 import com.example.demo.Domain.Entity.UserEntity;
 import com.example.demo.Service.UserService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/User")
+@Api(value="User", description = "UserController")
 public class UserController {
     @Autowired
     private UserService userService;

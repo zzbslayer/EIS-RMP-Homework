@@ -85,7 +85,7 @@ public class HttpRequest {
         jsonParam.put("phone", "18080808080");
         jsonParam.put("password", "qwerty");
         jsonParam.put("avatar", "null");
-        jsonParam.put("useraddress", new JSONArray());
+        jsonParam.put("address", new JSONArray());
         String url= CONSTANT.RMP_USER_API;
         String data = HttpRequest.requestWithBody(METHOD_POST, jsonParam, url);
         System.out.println(data);
