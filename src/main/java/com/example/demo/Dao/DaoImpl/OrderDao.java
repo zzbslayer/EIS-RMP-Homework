@@ -48,7 +48,7 @@ public class OrderDao implements DaoInterface<Long, OrderEntity> {
         to
             [{...},{...}]
          */
-        JSONArray json = JSONObject.parseObject(data).getJSONArray("Good");
+        JSONArray json = JSONObject.parseObject(data).getJSONArray("Order");
         return JsonHelper.jsonStringToList(json.toString(), OrderEntity.class);
     }
 }

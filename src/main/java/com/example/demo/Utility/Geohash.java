@@ -1,19 +1,20 @@
 package com.example.demo.Utility;
 
+import com.example.demo.Config.CONSTANT;
+
 public class Geohash {
-    public static double MAX_LONGITUDE = 180;
-    public static double MIN_LONGITUDE = -180;
-    public static double MAX_LATITUDE = 90;
-    public static double MIN_LATITUDE = -90;
+
 
     public static int DEFAULT_LENGTH = 6;
+    public static int DEFAULT_MATCH_LENGTH = 4;
 
     public static String geohash(double longitude, double latitude, int length) {
-        assert(longitude >= MIN_LONGITUDE && longitude <= MAX_LONGITUDE);
+        assert(longitude >= CONSTANT.MIN_LONGITUDE && longitude <= CONSTANT.MAX_LONGITUDE);
+        assert(latitude >= CONSTANT.MIN_LATITUDE && latitude <= CONSTANT.MAX_LATITUDE);
         assert(length % 2 == 0);
         int bit = length * 5;
-        long encoded_longitude = encode(longitude, MAX_LONGITUDE, MIN_LONGITUDE, bit / 2);
-        long encoded_latitude = encode(latitude, MAX_LATITUDE, MIN_LATITUDE, bit / 2);
+        long encoded_longitude = encode(longitude, CONSTANT.MAX_LONGITUDE, CONSTANT.MIN_LONGITUDE, bit / 2);
+        long encoded_latitude = encode(latitude, CONSTANT.MAX_LATITUDE, CONSTANT.MIN_LATITUDE, bit / 2);
         long merged_val = merge(encoded_longitude, encoded_latitude, bit / 2);
         StringBuilder sb = new StringBuilder();
         while (bit > 0){

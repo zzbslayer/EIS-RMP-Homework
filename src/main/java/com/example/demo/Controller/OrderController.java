@@ -2,6 +2,8 @@ package com.example.demo.Controller;
 
 import com.example.demo.Domain.Entity.OrderEntity;
 import com.example.demo.Service.OrderService;
+import com.example.demo.Utility.QueryParam.OrderQueryParam;
+import com.example.demo.Utility.QueryParam.QueryParam;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +22,18 @@ public class OrderController {
         return orderService.getOrderById(id);
     }
 
+    /*todo*/
     @GetMapping("")
-    public List<OrderEntity> getOrder(){
+    public List<OrderEntity> getOrder(@RequestBody OrderQueryParam param){
+        if (param.validate()){
+            QueryParam.QueryMode mode = param.getMode();
+            if (mode == QueryParam.QueryMode.ALL)
+                return orderService.getAll();
+            if (mode == QueryParam.QueryMode.NEARBY)
+                return orderService.getNearbyOrders(param.getLongitude(), param.getLatitude());
+            if (mode == QueryParam.QueryMode.USER)
+                return orderService.getOrdersByUserId(param.getUserid());
+        }
         return orderService.getAll();
     }
 
@@ -34,4 +46,5 @@ public class OrderController {
     public OrderEntity modifyOrder(@PathVariable long id, @RequestBody OrderEntity orderEntity){
         return orderService.modifyOrder(id, orderEntity);
     }
+
 }

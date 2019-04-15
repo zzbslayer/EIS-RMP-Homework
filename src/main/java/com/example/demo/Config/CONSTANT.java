@@ -12,4 +12,9 @@ public interface CONSTANT {
     String ERROR_VALUE = "ERROR";
 
     String DEFAULT_AVATAR = "NULL";
+
+    double MAX_LONGITUDE = 180;
+    double MIN_LONGITUDE = -180;
+    double MAX_LATITUDE = 90;
+    double MIN_LATITUDE = -90;
 }

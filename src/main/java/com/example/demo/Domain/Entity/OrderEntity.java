@@ -7,7 +7,7 @@ import java.util.List;
 
 public class OrderEntity implements EntityInterface {
 
-    enum Status {
+    public enum Status {
         WAITING, BUYING, SENDING, TO_BE_CHECKED, EXPIRED, COMPLETED;
     }
 

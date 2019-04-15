@@ -1,18 +1,19 @@
 package com.example.demo.Domain;
 
+import com.example.demo.Config.CONSTANT;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
 public abstract class AbstractCoordinate {
-    @Max(180)
-    @Min(-180)
+    @Max((long)(CONSTANT.MAX_LONGITUDE))
+    @Min((long)(CONSTANT.MIN_LONGITUDE))
     //@JsonIgnore
     private double longitude;
 
-    @Max(90)
-    @Min(-90)
+    @Max((long)(CONSTANT.MAX_LATITUDE))
+    @Min((long)(CONSTANT.MIN_LATITUDE))
     //@JsonIgnore
     private double latitude;
 

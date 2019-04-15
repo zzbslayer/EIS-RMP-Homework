@@ -12,4 +12,8 @@ public interface OrderService {
     OrderEntity modifyOrder(long id, OrderEntity orderEntity);
 
     List<OrderEntity> getAll();
+
+    List<OrderEntity> getNearbyOrders(double longitude, double latitude);
+
+    List<OrderEntity> getOrdersByUserId(long id);
 }
