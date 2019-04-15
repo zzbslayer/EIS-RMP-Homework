@@ -1,4 +1,4 @@
-package com.example.demo.Utility;
+package com.example.demo.Utility.Network;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;

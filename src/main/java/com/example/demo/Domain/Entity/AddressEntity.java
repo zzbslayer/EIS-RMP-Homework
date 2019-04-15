@@ -3,7 +3,9 @@ package com.example.demo.Domain.Entity;
 import com.alibaba.fastjson.JSONObject;
 import com.example.demo.Domain.AbstractCoordinate;
 import com.example.demo.Domain.EntityInterface;
-import com.example.demo.Utility.Geohash;
+import com.example.demo.Utility.Entity.Point;
+import com.example.demo.Utility.Geography.Geocoder;
+import com.example.demo.Utility.Geography.Geohash;
 
 public class AddressEntity extends AbstractCoordinate implements EntityInterface {
     private long id;
@@ -51,9 +53,10 @@ public class AddressEntity extends AbstractCoordinate implements EntityInterface
         json.put("address", address);
         json.put("recipient", recipient);
         json.put("phone", phone);
-        json.put("latitude", this.getLatitude());
-        json.put("longitude", this.getLongitude());
-        json.put("geohash", Geohash.geohash(this.getLongitude(), this.getLatitude(), Geohash.DEFAULT_LENGTH));
+        Point point = Geocoder.geoEncode(address);
+        json.put("latitude", point.getLat());
+        json.put("longitude", point.getLng());
+        json.put("geohash", Geohash.geohash(point.getLng(), point.getLat(), Geohash.DEFAULT_LENGTH));
         return json;
     }
 

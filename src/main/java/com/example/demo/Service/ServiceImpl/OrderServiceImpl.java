@@ -3,7 +3,7 @@ package com.example.demo.Service.ServiceImpl;
 import com.example.demo.Dao.DaoImpl.OrderDao;
 import com.example.demo.Domain.Entity.OrderEntity;
 import com.example.demo.Service.OrderService;
-import com.example.demo.Utility.Geohash;
+import com.example.demo.Utility.Geography.Geohash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

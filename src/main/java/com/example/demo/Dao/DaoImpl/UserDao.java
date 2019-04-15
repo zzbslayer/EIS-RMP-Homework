@@ -5,8 +5,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.demo.Config.CONSTANT;
 import com.example.demo.Dao.DaoInterface;
 import com.example.demo.Domain.Entity.UserEntity;
-import com.example.demo.Utility.HttpRequest;
-import com.example.demo.Utility.JsonHelper;
+import com.example.demo.Utility.Network.HttpRequest;
+import com.example.demo.Utility.Network.JsonHelper;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;

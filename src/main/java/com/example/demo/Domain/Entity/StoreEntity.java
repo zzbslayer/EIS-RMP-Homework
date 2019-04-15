@@ -4,7 +4,9 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.example.demo.Domain.AbstractCoordinate;
 import com.example.demo.Domain.EntityInterface;
-import com.example.demo.Utility.Geohash;
+import com.example.demo.Utility.Entity.Point;
+import com.example.demo.Utility.Geography.Geocoder;
+import com.example.demo.Utility.Geography.Geohash;
 
 import java.util.List;
 
@@ -74,9 +76,10 @@ public class StoreEntity extends AbstractCoordinate implements EntityInterface {
         json.put("location", location);
         json.put("image", image);
         json.put("description", description);
-        json.put("latitude", this.getLatitude());
-        json.put("longitude", this.getLongitude());
-        json.put("geohash", Geohash.geohash(this.getLongitude(), this.getLatitude(), Geohash.DEFAULT_LENGTH));
+        Point point = Geocoder.geoEncode(location);
+        json.put("latitude", point.getLat());
+        json.put("longitude", point.getLng());
+        json.put("geohash", Geohash.geohash(point.getLng(), point.getLat(), Geohash.DEFAULT_LENGTH));
         json.put("goods", new JSONArray());
         return json;
     }

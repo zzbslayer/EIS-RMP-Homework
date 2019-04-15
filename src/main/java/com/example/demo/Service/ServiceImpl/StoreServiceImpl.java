@@ -3,7 +3,7 @@ package com.example.demo.Service.ServiceImpl;
 import com.example.demo.Dao.DaoImpl.StoreDao;
 import com.example.demo.Domain.Entity.StoreEntity;
 import com.example.demo.Service.StoreService;
-import com.example.demo.Utility.Geohash;
+import com.example.demo.Utility.Geography.Geohash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

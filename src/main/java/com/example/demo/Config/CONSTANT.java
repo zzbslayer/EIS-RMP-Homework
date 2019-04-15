@@ -8,6 +8,20 @@ public interface CONSTANT {
     String RMP_ADDRESS_API = RMP_SERVER + "Address/";
     String RMP_GOOD_API = RMP_SERVER + "Good/";
 
+    String BAIDU_GEOCODER_API = "http://api.map.baidu.com/geocoder/v2/";
+    String AK = "lq1MAo2bZoPuReD0FyhzmzN2ISqGYHA2";
+
+    static String buildGeocoderAPI(String address){
+        StringBuilder sb = new StringBuilder();
+        sb.append(BAIDU_GEOCODER_API);
+        sb.append("?address=");
+        sb.append(address);
+        sb.append("&output=json&ak=");
+        sb.append(AK);
+        //sb.append("&callback=showLocation");
+        return sb.toString();
+    }
+
     String NULL_VALUE = "NULL";
     String ERROR_VALUE = "ERROR";
 
