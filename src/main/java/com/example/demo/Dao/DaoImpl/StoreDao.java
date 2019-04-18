@@ -26,6 +26,7 @@ public class StoreDao implements DaoInterface<Long, StoreEntity> {
         JSONObject jsonParam = storeEntity.createRequestBody();
         String url= CONSTANT.RMP_STORE_API;
         String data = HttpRequest.requestWithBody(HttpRequest.METHOD_POST, jsonParam, url);
+        System.out.println(data);
         return JsonHelper.jsonStringToObject(data, StoreEntity.class);
     }
 

@@ -10,12 +10,12 @@ import com.example.demo.Utility.Geography.Geohash;
 
 import java.util.List;
 
-public class StoreEntity extends AbstractCoordinate implements EntityInterface {
+public class StoreEntity implements EntityInterface {
     private long id;
     private String storename;
-    private String location;
     private String image;
     private String description;
+    private AddressEntity address;
 
     private List<GoodEntity> goods;
 
@@ -26,14 +26,6 @@ public class StoreEntity extends AbstractCoordinate implements EntityInterface {
 
     public void setStorename(String storename) {
         this.storename = storename;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
     }
 
     public String getImage() {
@@ -55,9 +47,9 @@ public class StoreEntity extends AbstractCoordinate implements EntityInterface {
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        sb.append("storename: " + storename);
-        sb.append("\nlongitude: " + this.getLongitude());
-        sb.append("\nlatitude: " + this.getLatitude());
+        sb.append(storename);
+        sb.append("\t");
+        sb.append(address.toString());
         return sb.toString();
     }
 
@@ -73,13 +65,14 @@ public class StoreEntity extends AbstractCoordinate implements EntityInterface {
     public JSONObject createRequestBody() {
         JSONObject json = new JSONObject();
         json.put("storename", storename);
-        json.put("location", location);
         json.put("image", image);
         json.put("description", description);
-        Point point = Geocoder.geoEncode(location);
-        json.put("latitude", point.getLat());
-        json.put("longitude", point.getLng());
-        json.put("geohash", Geohash.geohash(point.getLng(), point.getLat(), Geohash.DEFAULT_LENGTH));
+        Point point = Geocoder.geoEncode(address.getAddress());
+
+        JSONObject address = new JSONObject();
+        address.put("id", this.address.getId());
+
+        json.put("address", address);
         json.put("goods", new JSONArray());
         return json;
     }
@@ -98,5 +91,13 @@ public class StoreEntity extends AbstractCoordinate implements EntityInterface {
 
     public void setGoods(List<GoodEntity> goods) {
         this.goods = goods;
+    }
+
+    public AddressEntity getAddress() {
+        return address;
+    }
+
+    public void setAddress(AddressEntity address) {
+        this.address = address;
     }
 }

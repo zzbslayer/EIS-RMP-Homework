@@ -22,7 +22,6 @@ public class OrderController {
         return orderService.getOrderById(id);
     }
 
-    /*todo*/
     @GetMapping("")
     public List<OrderEntity> getOrder(@RequestBody OrderQueryParam param){
         if (param.validate()){
@@ -46,5 +45,4 @@ public class OrderController {
     public OrderEntity modifyOrder(@PathVariable long id, @RequestBody OrderEntity orderEntity){
         return orderService.modifyOrder(id, orderEntity);
     }
-
 }

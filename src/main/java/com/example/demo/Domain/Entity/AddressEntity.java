@@ -10,7 +10,7 @@ import com.example.demo.Utility.Geography.Geohash;
 public class AddressEntity extends AbstractCoordinate implements EntityInterface {
     private long id;
     private String address;
-    private String recipient;
+    private String contact;
     private String phone;
 
     public AddressEntity(){};
@@ -31,12 +31,12 @@ public class AddressEntity extends AbstractCoordinate implements EntityInterface
         this.id = id;
     }
 
-    public String getRecipient() {
-        return recipient;
+    public String getContact() {
+        return contact;
     }
 
-    public void setRecipient(String recipient) {
-        this.recipient = recipient;
+    public void setContact(String contact) {
+        this. contact = contact;
     }
 
     public String getPhone() {
@@ -51,7 +51,7 @@ public class AddressEntity extends AbstractCoordinate implements EntityInterface
     public JSONObject createRequestBody() {
         JSONObject json = new JSONObject();
         json.put("address", address);
-        json.put("recipient", recipient);
+        json.put("contact", contact);
         json.put("phone", phone);
         Point point = Geocoder.geoEncode(address);
         json.put("latitude", point.getLat());
@@ -65,5 +65,17 @@ public class AddressEntity extends AbstractCoordinate implements EntityInterface
         JSONObject json = createRequestBody();
         json.put("id", id);
         return json;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(address);
+        sb.append("\t(");
+        sb.append(getLongitude());
+        sb.append(", ");
+        sb.append(getLatitude());
+        sb.append(")");
+        return sb.toString();
     }
 }

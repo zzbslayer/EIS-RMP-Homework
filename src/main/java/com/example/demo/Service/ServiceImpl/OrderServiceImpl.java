@@ -43,7 +43,7 @@ public class OrderServiceImpl implements OrderService{
                 orders
                         .stream()
                         .filter((e) ->
-                                (Geohash.match(base, e.getStore().getGeohash(), Geohash.DEFAULT_MATCH_LENGTH)
+                                (Geohash.match(base, e.getStore().getAddress().getGeohash(), Geohash.DEFAULT_MATCH_LENGTH)
                                 && e.getStatus() == OrderEntity.Status.WAITING)
                         )
                         .sorted((a, b) -> {
@@ -60,7 +60,7 @@ public class OrderServiceImpl implements OrderService{
     }
 
     private static double orderDistance(double x1, double y1, OrderEntity o){
-        return distance(x1, y1, o.getStore().getLongitude(), o.getStore().getLatitude());
+        return distance(x1, y1, o.getStore().getAddress().getLongitude(), o.getStore().getAddress().getLatitude());
     }
     private static double distance(double x1, double y1, double x2, double y2){
         return Math.sqrt(Math.pow((x1- x2), 2) + Math.pow(y1-y2, 2));

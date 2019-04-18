@@ -22,7 +22,6 @@ public class Geohash {
             char c = base32(char_val);
             sb.append(c);
             bit -= 5;
-            //merged_val = merged_val >> 5;
         }
         return sb.toString();
     }

@@ -43,7 +43,7 @@ public class StoreServiceImpl implements StoreService {
                 stores
                         .stream()
                         .filter((e) ->
-                                (Geohash.match(base, e.getGeohash(), Geohash.DEFAULT_MATCH_LENGTH))
+                                (Geohash.match(base, e.getAddress().getGeohash(), Geohash.DEFAULT_MATCH_LENGTH))
                         )
                         .sorted((a, b) -> {
                             double a_distance = storeDistance(longitude, latitude, a);
@@ -58,7 +58,7 @@ public class StoreServiceImpl implements StoreService {
     }
 
     private static double storeDistance(double x1, double y1, StoreEntity s){
-        return distance(x1, y1, s.getLongitude(), s.getLatitude());
+        return distance(x1, y1, s.getAddress().getLongitude(), s.getAddress().getLatitude());
     }
     private static double distance(double x1, double y1, double x2, double y2){
         return Math.sqrt(Math.pow((x1- x2), 2) + Math.pow(y1-y2, 2));
