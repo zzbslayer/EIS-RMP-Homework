@@ -10,8 +10,10 @@ import com.example.demo.Utility.Geography.Geohash;
 public class AddressEntity extends AbstractCoordinate implements EntityInterface {
     private long id;
     private String address;
-    private String contact;
-    private String phone;
+    private double latitude;
+    private double longitude;
+    private String geohash;
+
 
     public AddressEntity(){};
 
@@ -31,28 +33,9 @@ public class AddressEntity extends AbstractCoordinate implements EntityInterface
         this.id = id;
     }
 
-    public String getContact() {
-        return contact;
-    }
-
-    public void setContact(String contact) {
-        this. contact = contact;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
     @Override
     public JSONObject createRequestBody() {
         JSONObject json = new JSONObject();
-        json.put("address", address);
-        json.put("contact", contact);
-        json.put("phone", phone);
         Point point = Geocoder.geoEncode(address);
         json.put("latitude", point.getLat());
         json.put("longitude", point.getLng());
@@ -77,5 +60,35 @@ public class AddressEntity extends AbstractCoordinate implements EntityInterface
         sb.append(getLatitude());
         sb.append(")");
         return sb.toString();
+    }
+
+    @Override
+    public double getLatitude() {
+        return latitude;
+    }
+
+    @Override
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    @Override
+    public double getLongitude() {
+        return longitude;
+    }
+
+    @Override
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    @Override
+    public String getGeohash() {
+        return geohash;
+    }
+
+    @Override
+    public void setGeohash(String geohash) {
+        this.geohash = geohash;
     }
 }

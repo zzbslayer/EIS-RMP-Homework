@@ -7,6 +7,7 @@ public interface CONSTANT {
     String RMP_ORDER_API = RMP_SERVER + "Order/";
     String RMP_ADDRESS_API = RMP_SERVER + "Address/";
     String RMP_GOOD_API = RMP_SERVER + "Good/";
+    String RMP_RECIPIENTADDRESS = RMP_SERVER + "Recipientaddress/";
 
     String BAIDU_GEOCODER_API = "http://api.map.baidu.com/geocoder/v2/";
     String AK = "lq1MAo2bZoPuReD0FyhzmzN2ISqGYHA2";

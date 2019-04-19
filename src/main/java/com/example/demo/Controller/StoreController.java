@@ -26,18 +26,14 @@ public class StoreController {
 
     /*todo*/
     @GetMapping("")
-    public List<StoreEntity> getStore(@RequestBody StoreQueryParam param){
-        if (param.validate()){
-            QueryParam.QueryMode mode = param.getMode();
-            if (mode == QueryMode.ALL)
-                return storeService.getAll();
-            else if (mode == QueryMode.NEARBY)
-                return storeService.getNearbyStores(param.getLongitude(), param.getLatitude());
-        }
+    public List<StoreEntity> getStore(@RequestParam String mode, @RequestParam Double latitude, @RequestParam Double longitude){
+
+        if (mode.equals("ALL"))
+            return storeService.getAll();
+        else if (mode.equals("NEARBY"))
+            return storeService.getNearbyStores(longitude, latitude);
 
         return storeService.getAll();
-
-
     }
 
     @PostMapping("")

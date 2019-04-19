@@ -23,16 +23,14 @@ public class OrderController {
     }
 
     @GetMapping("")
-    public List<OrderEntity> getOrder(@RequestBody OrderQueryParam param){
-        if (param.validate()){
-            QueryParam.QueryMode mode = param.getMode();
-            if (mode == QueryParam.QueryMode.ALL)
-                return orderService.getAll();
-            if (mode == QueryParam.QueryMode.NEARBY)
-                return orderService.getNearbyOrders(param.getLongitude(), param.getLatitude());
-            if (mode == QueryParam.QueryMode.USER)
-                return orderService.getOrdersByUserId(param.getUserid());
-        }
+    public List<OrderEntity> getOrder(@RequestParam String mode, @RequestParam Double latitude, @RequestParam Double longitude, @RequestParam Long userid){
+
+        if (mode.equals("ALL"))
+            return orderService.getAll();
+        if (mode.equals("NEARBY"))
+            return orderService.getNearbyOrders(longitude, latitude);
+        if (mode.equals("USER"))
+            return orderService.getOrdersByUserId(userid);
         return orderService.getAll();
     }
 

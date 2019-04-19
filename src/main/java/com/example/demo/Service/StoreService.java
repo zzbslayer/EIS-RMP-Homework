@@ -11,4 +11,5 @@ public interface StoreService {
     List<StoreEntity> getAll();
 
     List<StoreEntity> getNearbyStores(double longitude, double latitude);
+
 }

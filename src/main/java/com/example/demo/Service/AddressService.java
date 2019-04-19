@@ -12,4 +12,6 @@ public interface AddressService {
     AddressEntity modifyAddress(long id, AddressEntity userEntity);
 
     List<AddressEntity> getAll();
+
+    AddressEntity createAddressByStoreId(long storeid, AddressEntity addressEntity);
 }

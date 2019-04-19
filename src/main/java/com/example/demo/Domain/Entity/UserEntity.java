@@ -13,7 +13,7 @@ public class UserEntity implements EntityInterface {
     private String phone;
     private String password;
     private String avatar;
-    private List<AddressEntity> address;
+    private List<RecipientAddressEntity> address;
 
     public UserEntity() {}
 
@@ -57,11 +57,11 @@ public class UserEntity implements EntityInterface {
         this.avatar = avatar;
     }
 
-    public List<AddressEntity> getAddress() {
+    public List<RecipientAddressEntity> getAddress() {
         return address;
     }
 
-    public void setAddress(List<AddressEntity> address) {
+    public void setAddress(List<RecipientAddressEntity> address) {
         this.address = address;
     }
 

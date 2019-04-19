@@ -2,11 +2,9 @@ package com.example.demo.Domain.Entity;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.example.demo.Domain.AbstractCoordinate;
 import com.example.demo.Domain.EntityInterface;
 import com.example.demo.Utility.Entity.Point;
 import com.example.demo.Utility.Geography.Geocoder;
-import com.example.demo.Utility.Geography.Geohash;
 
 import java.util.List;
 
