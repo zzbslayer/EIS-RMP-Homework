@@ -16,17 +16,17 @@ public class OrderServiceImpl implements OrderService{
     private OrderDao orderDao;
 
     @Override
-    public OrderEntity getOrderById(long id) {
+    public OrderEntity getById(long id) {
         return orderDao.getById(id);
     }
 
     @Override
-    public OrderEntity createOrder(OrderEntity orderEntity) {
+    public OrderEntity create(OrderEntity orderEntity) {
         return orderDao.create(orderEntity);
     }
 
     @Override
-    public OrderEntity modifyOrder(long id, OrderEntity orderEntity) {
+    public OrderEntity modify(long id, OrderEntity orderEntity) {
         return orderDao.modify(id, orderEntity);
     }
 
@@ -36,7 +36,7 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
-    public List<OrderEntity> getNearbyOrders(double longitude, double latitude) {
+    public List<OrderEntity> getNearby(double longitude, double latitude) {
         String base = Geohash.geohash(longitude, latitude, Geohash.DEFAULT_LENGTH);
         List<OrderEntity> orders = getAll();
         List<OrderEntity> res =
@@ -67,7 +67,7 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
-    public List<OrderEntity> getOrdersByUserId(long id) {
+    public List<OrderEntity> getByUserId(long id) {
         List<OrderEntity> orders = getAll();
         List<OrderEntity> res =
                 orders

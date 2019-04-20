@@ -5,11 +5,11 @@ import com.example.demo.Domain.Entity.UserEntity;
 import java.util.List;
 
 public interface UserService {
-    UserEntity getUserById(long id);
+    UserEntity getById(long id);
 
-    UserEntity createUser(UserEntity userEntity);
+    UserEntity create(UserEntity userEntity);
 
-    UserEntity modifyUser(long id, UserEntity userEntity);
+    UserEntity modify(long id, UserEntity userEntity);
 
     List<UserEntity> getAll();
 }

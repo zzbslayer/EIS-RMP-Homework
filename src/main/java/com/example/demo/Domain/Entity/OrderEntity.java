@@ -1,11 +1,20 @@
 package com.example.demo.Domain.Entity;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.example.demo.Domain.EntityInterface;
 
 import java.util.List;
 
 public class OrderEntity implements EntityInterface {
+
+    public RecipientAddressEntity getRecipientaddress() {
+        return recipientaddress;
+    }
+
+    public void setRecipientaddress(RecipientAddressEntity recipientaddress) {
+        this.recipientaddress = recipientaddress;
+    }
 
     public enum Status {
         WAITING, BUYING, SENDING, TO_BE_CHECKED, EXPIRED, COMPLETED;
@@ -14,7 +23,7 @@ public class OrderEntity implements EntityInterface {
     private long id;
     private UserEntity buyer;
     private UserEntity proxy;
-    private AddressEntity address;
+    private RecipientAddressEntity recipientaddress;
     private List<GoodEntity> goods;
     private double goodsprice;
     private double proxyprice;
@@ -28,14 +37,6 @@ public class OrderEntity implements EntityInterface {
 
     public void setStore(StoreEntity store) {
         this.store = store;
-    }
-
-    public AddressEntity getAddress() {
-        return address;
-    }
-
-    public void setAddress(AddressEntity address) {
-        this.address = address;
     }
 
     public List<GoodEntity> getGoods() {
@@ -117,7 +118,7 @@ public class OrderEntity implements EntityInterface {
         json.put("goodsprice", goodsprice);
         json.put("proxyprice", proxyprice);
         json.put("goods", goods);
-        json.put("address", address);
+        json.put("recipientaddress", recipientaddress);
         json.put("store", store);
 
         return json;

@@ -14,17 +14,17 @@ public class UserServiceImpl implements UserService{
     UserDao userDao;
 
     @Override
-    public UserEntity getUserById(long id){
+    public UserEntity getById(long id){
         return userDao.getById(id);
     }
 
     @Override
-    public UserEntity createUser(UserEntity userEntity) {
+    public UserEntity create(UserEntity userEntity) {
         return userDao.create(userEntity);
     }
 
     @Override
-    public UserEntity modifyUser(long id, UserEntity userEntity) {
+    public UserEntity modify(long id, UserEntity userEntity) {
         return userDao.modify(id, userEntity);
     }
 

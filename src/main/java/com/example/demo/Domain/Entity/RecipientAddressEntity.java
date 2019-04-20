@@ -12,8 +12,10 @@ public class RecipientAddressEntity implements EntityInterface{
     @Override
     public JSONObject createRequestBody() {
         JSONObject json = new JSONObject();
+
         JSONObject address = new JSONObject();
         address.put("id", this.address.getId());
+
         json.put("address", address);
         json.put("contact", contact);
         json.put("phone", phone);

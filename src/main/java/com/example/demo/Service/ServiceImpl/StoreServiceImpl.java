@@ -20,12 +20,12 @@ public class StoreServiceImpl implements StoreService {
     AddressDao addressDao;
 
     @Override
-    public StoreEntity getStoreById(long id){
+    public StoreEntity getById(long id){
         return storeDao.getById(id);
     }
 
     @Override
-    public StoreEntity createStore(StoreEntity storeEntity) {
+    public StoreEntity create(StoreEntity storeEntity) {
         AddressEntity a = storeEntity.getAddress();
         AddressEntity addressEntity = addressDao.create(a);
         storeEntity.setAddress(addressEntity);
@@ -33,7 +33,7 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
-    public StoreEntity modifyStore(long id, StoreEntity storeEntity) {
+    public StoreEntity modify(long id, StoreEntity storeEntity) {
         return storeDao.modify(id, storeEntity);
     }
 
@@ -43,7 +43,7 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
-    public List<StoreEntity> getNearbyStores(double longitude, double latitude) {
+    public List<StoreEntity> getNearby(double longitude, double latitude) {
         String base = Geohash.geohash(longitude, latitude, Geohash.DEFAULT_LENGTH);
         List<StoreEntity> stores = getAll();
         List<StoreEntity> res =

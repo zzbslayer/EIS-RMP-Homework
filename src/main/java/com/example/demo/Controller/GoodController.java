@@ -1,6 +1,7 @@
 package com.example.demo.Controller;
 
 import com.example.demo.Domain.Entity.GoodEntity;
+import com.example.demo.Domain.Utils.RmpReturnValue;
 import com.example.demo.Service.GoodService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,22 +17,32 @@ public class GoodController {
     private GoodService goodService;
 
     @GetMapping("/{id}")
-    public GoodEntity getGoodById(@PathVariable long id){
-        return goodService.getGoodById(id);
+    public GoodEntity getById(@PathVariable long id){
+        return goodService.getById(id);
     }
 
     @GetMapping("")
-    public List<GoodEntity> getGood(){
+    public List<GoodEntity> get(){
         return goodService.getAll();
     }
 
     @PostMapping("")
-    public GoodEntity createGood(@RequestBody GoodEntity goodEntity){
-        return goodService.createGood(goodEntity);
+    public GoodEntity create(@RequestBody GoodEntity goodEntity){
+        return goodService.create(goodEntity);
     }
 
     @PutMapping("/{id}")
-    public GoodEntity modifyGood(@PathVariable long id, @RequestBody GoodEntity goodEntity){
-        return goodService.modifyGood(id, goodEntity);
+    public GoodEntity modify(@PathVariable long id, @RequestBody GoodEntity goodEntity){
+        return goodService.modify(id, goodEntity);
+    }
+
+    @PostMapping("/store/{storeId}")
+    public GoodEntity createByStoreId(@PathVariable long storeId,@RequestBody GoodEntity goodEntity){
+        return goodService.createByStoreId(storeId, goodEntity);
+    }
+
+    @DeleteMapping("/store/{storeId}/{goodId}")
+    public RmpReturnValue deleteByStoreId(@PathVariable long storeId, @PathVariable long goodId){
+        return goodService.deleteByStoreId(storeId, goodId);
     }
 }

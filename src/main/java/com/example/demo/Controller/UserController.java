@@ -17,7 +17,7 @@ public class UserController {
 
     @GetMapping("/{id}")
     public UserEntity getUserById(@PathVariable long id){
-        return userService.getUserById(id);
+        return userService.getById(id);
     }
 
     @GetMapping("")
@@ -27,11 +27,11 @@ public class UserController {
 
     @PostMapping("")
     public UserEntity createUser(@RequestBody UserEntity userEntity){
-        return userService.createUser(userEntity);
+        return userService.create(userEntity);
     }
 
     @PutMapping("/{id}")
     public UserEntity modifyUser(@PathVariable long id, @RequestBody UserEntity userEntity){
-        return userService.modifyUser(id, userEntity);
+        return userService.modify(id, userEntity);
     }
 }

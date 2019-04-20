@@ -17,7 +17,7 @@ public class AddressController {
 
     @GetMapping("/{id}")
     public AddressEntity getAddressById(@PathVariable long id){
-        return addressService.getAddressById(id);
+        return addressService.getById(id);
     }
 
     @GetMapping("")
@@ -27,11 +27,11 @@ public class AddressController {
 
     @PostMapping("")
     public AddressEntity createAddress(@RequestBody AddressEntity addressEntity){
-        return addressService.createAddress(addressEntity);
+        return addressService.create(addressEntity);
     }
 
     @PutMapping("/{id}")
     public AddressEntity modifyAddress(@PathVariable long id, @RequestBody AddressEntity addressEntity){
-        return addressService.modifyAddress(id, addressEntity);
+        return addressService.modify(id, addressEntity);
     }
 }

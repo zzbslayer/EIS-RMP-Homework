@@ -2,17 +2,22 @@ package com.example.demo.Service;
 
 
 import com.example.demo.Domain.Entity.RecipientAddressEntity;
+import com.example.demo.Domain.Utils.RmpReturnValue;
 
 import java.util.List;
 
 public interface RecipientAddressService {
-    RecipientAddressEntity getRecipientAddressById(long id);
+    RecipientAddressEntity getById(long id);
 
-    RecipientAddressEntity createRecipientAddress(RecipientAddressEntity recipientAddressEntity);
+    RecipientAddressEntity create(RecipientAddressEntity recipientAddressEntity);
 
-    RecipientAddressEntity modifyRecipientAddress(long id, RecipientAddressEntity recipientAddressEntity);
+    RecipientAddressEntity modify(long id, RecipientAddressEntity recipientAddressEntity);
 
     List<RecipientAddressEntity> getAll();
 
-    RecipientAddressEntity createRecipientAddressByUserId(long userid, RecipientAddressEntity recipientAddressEntity);
+    RecipientAddressEntity createByUserId(long userid, RecipientAddressEntity recipientAddressEntity);
+
+    RmpReturnValue delete(long addressid);
+
+    RmpReturnValue deleteByUserId(long userid, long addressid);
 }

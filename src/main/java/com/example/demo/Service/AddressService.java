@@ -1,17 +1,22 @@
 package com.example.demo.Service;
 
 import com.example.demo.Domain.Entity.AddressEntity;
+import com.example.demo.Domain.Utils.RmpReturnValue;
 
 import java.util.List;
 
 public interface AddressService {
-    AddressEntity getAddressById(long id);
+    AddressEntity getById(long id);
 
-    AddressEntity createAddress(AddressEntity addressEntity);
+    AddressEntity create(AddressEntity addressEntity);
 
-    AddressEntity modifyAddress(long id, AddressEntity userEntity);
+    AddressEntity modify(long id, AddressEntity userEntity);
 
     List<AddressEntity> getAll();
 
-    AddressEntity createAddressByStoreId(long storeid, AddressEntity addressEntity);
+    AddressEntity createByStoreId(long storeid, AddressEntity addressEntity);
+
+    RmpReturnValue delete(long addressid);
+
+
 }

@@ -1,8 +1,7 @@
 package com.example.demo.Controller;
 
-import com.example.demo.Domain.Entity.AddressEntity;
 import com.example.demo.Domain.Entity.RecipientAddressEntity;
-import com.example.demo.Service.AddressService;
+import com.example.demo.Domain.Utils.RmpReturnValue;
 import com.example.demo.Service.RecipientAddressService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,27 +17,32 @@ public class RecipientAddressController {
     private RecipientAddressService recipientAddressService;
 
     @GetMapping("/{id}")
-    public RecipientAddressEntity getRecipientAddressById(@PathVariable long id){
-        return recipientAddressService.getRecipientAddressById(id);
+    public RecipientAddressEntity getById(@PathVariable long id){
+        return recipientAddressService.getById(id);
     }
 
     @GetMapping("")
-    public List<RecipientAddressEntity> getRecipientAddress(){
+    public List<RecipientAddressEntity> get(){
         return recipientAddressService.getAll();
     }
 
     @PostMapping("")
-    public RecipientAddressEntity createRecipientAddress(@RequestBody RecipientAddressEntity recipientAddressEntity){
-        return recipientAddressService.createRecipientAddress(recipientAddressEntity);
+    public RecipientAddressEntity create(@RequestBody RecipientAddressEntity recipientAddressEntity){
+        return recipientAddressService.create(recipientAddressEntity);
     }
 
     @PutMapping("/{id}")
-    public RecipientAddressEntity modifyRecipientAddress(@PathVariable long id, @RequestBody RecipientAddressEntity recipientAddressEntity){
-        return recipientAddressService.modifyRecipientAddress(id, recipientAddressEntity);
+    public RecipientAddressEntity modify(@PathVariable long id, @RequestBody RecipientAddressEntity recipientAddressEntity){
+        return recipientAddressService.modify(id, recipientAddressEntity);
     }
 
     @PostMapping("/user/{userId}/{recipientAddressId}")
-    public RecipientAddressEntity createUserRecipientAddress(@PathVariable long userId, @PathVariable long recipientAddressId, @RequestBody RecipientAddressEntity recipientAddressEntity){
-        return recipientAddressService.createRecipientAddressByUserId(userId, recipientAddressEntity);
+    public RecipientAddressEntity createByUserId(@PathVariable long userId, @PathVariable long recipientAddressId, @RequestBody RecipientAddressEntity recipientAddressEntity){
+        return recipientAddressService.createByUserId(userId, recipientAddressEntity);
+    }
+
+    @DeleteMapping("/user/{userId}/{recipientAddressId}")
+    public RmpReturnValue deleteByUserId(@PathVariable long userId, @PathVariable long recipientAddressId){
+        return recipientAddressService.deleteByUserId(userId, recipientAddressId);
     }
 }

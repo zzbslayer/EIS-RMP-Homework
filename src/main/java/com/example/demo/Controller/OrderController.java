@@ -2,8 +2,6 @@ package com.example.demo.Controller;
 
 import com.example.demo.Domain.Entity.OrderEntity;
 import com.example.demo.Service.OrderService;
-import com.example.demo.Utility.QueryParam.OrderQueryParam;
-import com.example.demo.Utility.QueryParam.QueryParam;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,28 +17,28 @@ public class OrderController {
 
     @GetMapping("/{id}")
     public OrderEntity getOrderById(@PathVariable long id){
-        return orderService.getOrderById(id);
+        return orderService.getById(id);
     }
 
     @GetMapping("")
-    public List<OrderEntity> getOrder(@RequestParam String mode, @RequestParam Double latitude, @RequestParam Double longitude, @RequestParam Long userid){
+    public List<OrderEntity> getOrder(@RequestParam(required = false) String mode, @RequestParam(required = false) Double latitude, @RequestParam(required = false) Double longitude, @RequestParam(required = false) Long userid){
 
-        if (mode.equals("ALL"))
+        if (mode == null || mode.equals("ALL"))
             return orderService.getAll();
         if (mode.equals("NEARBY"))
-            return orderService.getNearbyOrders(longitude, latitude);
+            return orderService.getNearby(longitude, latitude);
         if (mode.equals("USER"))
-            return orderService.getOrdersByUserId(userid);
+            return orderService.getByUserId(userid);
         return orderService.getAll();
     }
 
     @PostMapping("")
     public OrderEntity createOrder(@RequestBody OrderEntity orderEntity){
-        return orderService.createOrder(orderEntity);
+        return orderService.create(orderEntity);
     }
 
     @PutMapping("/{id}")
     public OrderEntity modifyOrder(@PathVariable long id, @RequestBody OrderEntity orderEntity){
-        return orderService.modifyOrder(id, orderEntity);
+        return orderService.modify(id, orderEntity);
     }
 }

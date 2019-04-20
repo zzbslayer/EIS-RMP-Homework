@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.demo.Config.CONSTANT;
 import com.example.demo.Dao.DaoInterface;
 import com.example.demo.Domain.Entity.OrderEntity;
+import com.example.demo.Domain.Utils.RmpReturnValue;
 import com.example.demo.Utility.Network.HttpRequest;
 import com.example.demo.Utility.Network.JsonHelper;
 import org.springframework.stereotype.Repository;
@@ -50,5 +51,11 @@ public class OrderDao implements DaoInterface<Long, OrderEntity> {
          */
         JSONArray json = JSONObject.parseObject(data).getJSONArray("Order");
         return JsonHelper.jsonStringToList(json.toString(), OrderEntity.class);
+    }
+
+    public RmpReturnValue delete(Long id){
+        String url = CONSTANT.RMP_ORDER_API + String.valueOf(id);
+        String data = HttpRequest.request(HttpRequest.METHOD_DELETE, url);
+        return JsonHelper.jsonStringToObject(data, RmpReturnValue.class);
     }
 }

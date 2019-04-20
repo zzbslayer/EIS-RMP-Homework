@@ -37,6 +37,7 @@ public class AddressEntity extends AbstractCoordinate implements EntityInterface
     public JSONObject createRequestBody() {
         JSONObject json = new JSONObject();
         Point point = Geocoder.geoEncode(address);
+        json.put("address", address);
         json.put("latitude", point.getLat());
         json.put("longitude", point.getLng());
         json.put("geohash", Geohash.geohash(point.getLng(), point.getLat(), Geohash.DEFAULT_LENGTH));

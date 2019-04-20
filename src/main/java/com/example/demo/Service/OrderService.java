@@ -5,15 +5,15 @@ import com.example.demo.Domain.Entity.OrderEntity;
 import java.util.List;
 
 public interface OrderService {
-    OrderEntity getOrderById(long id);
+    OrderEntity getById(long id);
 
-    OrderEntity createOrder(OrderEntity orderEntity);
+    OrderEntity create(OrderEntity orderEntity);
 
-    OrderEntity modifyOrder(long id, OrderEntity orderEntity);
+    OrderEntity modify(long id, OrderEntity orderEntity);
 
     List<OrderEntity> getAll();
 
-    List<OrderEntity> getNearbyOrders(double longitude, double latitude);
+    List<OrderEntity> getNearby(double longitude, double latitude);
 
-    List<OrderEntity> getOrdersByUserId(long id);
+    List<OrderEntity> getByUserId(long id);
 }
