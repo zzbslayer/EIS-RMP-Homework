@@ -26,19 +26,23 @@ public class StoreDao implements DaoInterface<Long, StoreEntity> {
 
     public StoreEntity create(StoreEntity storeEntity) {
         JSONObject jsonParam = storeEntity.createRequestBody();
+        System.out.println("[StoreDao.create][param]: ");
+        System.out.println(jsonParam.toString());
         String url= CONSTANT.RMP_STORE_API;
         String data = HttpRequest.requestWithBody(HttpRequest.METHOD_POST, jsonParam, url);
-        System.out.println("[StoreDao.create]: " + data);
+        System.out.println("[StoreDao.create][result]: ");
+        System.out.println(data);
         return JsonHelper.jsonStringToObject(data, StoreEntity.class);
     }
 
     public StoreEntity modify(Long id, StoreEntity storeEntity) {
         JSONObject jsonParam = storeEntity.modifyRequestBody();
-        System.out.println("[StoreDao.modify][param]: " + jsonParam.toString());
+        System.out.println("[StoreDao.modify][param]: ");
         System.out.println(jsonParam.toString());
         String url= CONSTANT.RMP_STORE_API + String.valueOf(id);
         String data = HttpRequest.requestWithBody(HttpRequest.METHOD_PUT, jsonParam, url);
-        System.out.println("[StoreDao.modify][result]: " + data);
+        System.out.println("[StoreDao.modify][result]: ");
+        System.out.println(jsonParam.toString());
         return JsonHelper.jsonStringToObject(data, StoreEntity.class);
     }
 

@@ -64,9 +64,12 @@ public class StoreServiceImpl implements StoreService {
         List<StoreEntity> res =
                 stores
                         .stream()
-                        .filter((e) ->
-                                (Geohash.match(base, e.getAddress().getGeohash(), Geohash.DEFAULT_MATCH_LENGTH))
-                        )
+                        .filter((e) ->{
+                            AddressEntity addressEntity = e.getAddress();
+                            if (addressEntity == null)
+                                return false;
+                            return Geohash.match(base, addressEntity.getGeohash(), Geohash.DEFAULT_MATCH_LENGTH);
+                        })
                         .sorted((a, b) -> {
                             double a_distance = storeDistance(longitude, latitude, a);
                             double b_distance = storeDistance(longitude, latitude, b);

@@ -36,7 +36,7 @@ public class HttpRequest {
             return CONSTANT.NULL_VALUE;
         }
         else {
-            System.out.println(conn.getResponseMessage());
+            System.out.println("[HttpRequest.getResponse][error]:"+conn.getResponseMessage());
             return CONSTANT.ERROR_VALUE;
         }
         return sb.toString();
