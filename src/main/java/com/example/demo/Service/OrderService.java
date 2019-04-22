@@ -7,7 +7,7 @@ import java.util.List;
 public interface OrderService {
     OrderEntity getById(long id);
 
-    OrderEntity create(OrderEntity orderEntity);
+    OrderEntity create(OrderEntity orderEntity, boolean createAddress);
 
     OrderEntity modify(long id, OrderEntity orderEntity);
 

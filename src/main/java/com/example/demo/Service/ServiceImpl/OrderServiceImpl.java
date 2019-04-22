@@ -1,6 +1,8 @@
 package com.example.demo.Service.ServiceImpl;
 
+import com.example.demo.Dao.DaoImpl.AddressDao;
 import com.example.demo.Dao.DaoImpl.OrderDao;
+import com.example.demo.Domain.Entity.AddressEntity;
 import com.example.demo.Domain.Entity.OrderEntity;
 import com.example.demo.Service.OrderService;
 import com.example.demo.Utility.Geography.Geohash;
@@ -14,6 +16,8 @@ import java.util.stream.Collectors;
 public class OrderServiceImpl implements OrderService{
     @Autowired
     private OrderDao orderDao;
+    @Autowired
+    private AddressDao addressDao;
 
     @Override
     public OrderEntity getById(long id) {
@@ -21,7 +25,11 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
-    public OrderEntity create(OrderEntity orderEntity) {
+    public OrderEntity create(OrderEntity orderEntity, boolean createAddress) {
+        if (createAddress){
+            AddressEntity addressEntity = addressDao.create(orderEntity.getAddress());
+            orderEntity.setAddress(addressEntity);
+        }
         return orderDao.create(orderEntity);
     }
 

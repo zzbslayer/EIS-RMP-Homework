@@ -41,7 +41,7 @@ public class GoodController {
         return goodService.createByStoreId(storeId, goodEntity);
     }
 
-    @DeleteMapping("/store/{storeId}/{goodId}")
+    @DeleteMapping("/store/{storeId}/good/{goodId}")
     public RmpReturnValue deleteByStoreId(@PathVariable long storeId, @PathVariable long goodId){
         return goodService.deleteByStoreId(storeId, goodId);
     }

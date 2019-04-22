@@ -16,6 +16,14 @@ public class OrderEntity implements EntityInterface {
         this.recipientaddress = recipientaddress;
     }
 
+    public AddressEntity getAddress() {
+        return address;
+    }
+
+    public void setAddress(AddressEntity address) {
+        this.address = address;
+    }
+
     public enum Status {
         WAITING, BUYING, SENDING, TO_BE_CHECKED, EXPIRED, COMPLETED;
     }
@@ -30,6 +38,7 @@ public class OrderEntity implements EntityInterface {
     private String modifiedtime;
     private OrderEntity.Status status;
     private StoreEntity store;
+    private AddressEntity address;
 
     public StoreEntity getStore() {
         return store;

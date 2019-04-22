@@ -16,12 +16,12 @@ public class OrderController {
     private OrderService orderService;
 
     @GetMapping("/{id}")
-    public OrderEntity getOrderById(@PathVariable long id){
+    public OrderEntity getById(@PathVariable long id){
         return orderService.getById(id);
     }
 
     @GetMapping("")
-    public List<OrderEntity> getOrder(@RequestParam(required = false) String mode, @RequestParam(required = false) Double latitude, @RequestParam(required = false) Double longitude, @RequestParam(required = false) Long userid){
+    public List<OrderEntity> get(@RequestParam(required = false) String mode, @RequestParam(required = false) Double latitude, @RequestParam(required = false) Double longitude, @RequestParam(required = false) Long userid){
 
         if (mode == null || mode.equals("ALL"))
             return orderService.getAll();
@@ -33,12 +33,12 @@ public class OrderController {
     }
 
     @PostMapping("")
-    public OrderEntity createOrder(@RequestBody OrderEntity orderEntity){
-        return orderService.create(orderEntity);
+    public OrderEntity create(@RequestBody OrderEntity orderEntity, @RequestParam(defaultValue = "true") boolean createAddress){
+        return orderService.create(orderEntity, createAddress);
     }
 
     @PutMapping("/{id}")
-    public OrderEntity modifyOrder(@PathVariable long id, @RequestBody OrderEntity orderEntity){
+    public OrderEntity modify(@PathVariable long id, @RequestBody OrderEntity orderEntity){
         return orderService.modify(id, orderEntity);
     }
 }

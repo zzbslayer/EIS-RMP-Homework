@@ -66,4 +66,15 @@ public class GoodEntity implements EntityInterface {
         json.put("id", id);
         return json;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{\"id\":");
+        sb.append(id);
+        sb.append(", \"goodname\":");
+        sb.append(goodname);
+        sb.append("}");
+        return sb.toString();
+    }
 }

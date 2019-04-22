@@ -37,14 +37,14 @@ public class StoreController {
     }
 
     @PostMapping("")
-    public StoreEntity createStore(@RequestBody StoreEntity storeEntity){
+    public StoreEntity createStore(@RequestBody StoreEntity storeEntity, @RequestParam(defaultValue = "true")boolean createAddress){
         System.out.println(storeEntity);
-        return storeService.create(storeEntity);
+        return storeService.create(storeEntity, createAddress);
     }
 
     @PutMapping("/{id}")
-    public StoreEntity modifyStore(@PathVariable long id, @RequestBody StoreEntity storeEntity){
-        StoreEntity res = storeService.modify(id, storeEntity);
+    public StoreEntity modifyStore(@PathVariable long id, @RequestBody StoreEntity storeEntity, @RequestParam(defaultValue = "false") boolean updateGood, @RequestParam(defaultValue = "false") boolean updateAddress){
+        StoreEntity res = storeService.modify(id, storeEntity, updateGood, updateAddress);
         System.out.println(res);
         return res;
     }

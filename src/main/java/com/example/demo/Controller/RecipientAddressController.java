@@ -36,12 +36,12 @@ public class RecipientAddressController {
         return recipientAddressService.modify(id, recipientAddressEntity);
     }
 
-    @PostMapping("/user/{userId}/{recipientAddressId}")
+    @PostMapping("/user/{userId}")
     public RecipientAddressEntity createByUserId(@PathVariable long userId, @PathVariable long recipientAddressId, @RequestBody RecipientAddressEntity recipientAddressEntity){
         return recipientAddressService.createByUserId(userId, recipientAddressEntity);
     }
 
-    @DeleteMapping("/user/{userId}/{recipientAddressId}")
+    @DeleteMapping("/user/{userId}/recipientAddress/{recipientAddressId}")
     public RmpReturnValue deleteByUserId(@PathVariable long userId, @PathVariable long recipientAddressId){
         return recipientAddressService.deleteByUserId(userId, recipientAddressId);
     }

@@ -25,15 +25,30 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
-    public StoreEntity create(StoreEntity storeEntity) {
-        AddressEntity a = storeEntity.getAddress();
-        AddressEntity addressEntity = addressDao.create(a);
-        storeEntity.setAddress(addressEntity);
+    public StoreEntity create(StoreEntity storeEntity, boolean createAddress) {
+        if (createAddress){
+            AddressEntity a = storeEntity.getAddress();
+            AddressEntity addressEntity = addressDao.create(a);
+            storeEntity.setAddress(addressEntity);
+        }
+
         return storeDao.create(storeEntity);
     }
 
     @Override
-    public StoreEntity modify(long id, StoreEntity storeEntity) {
+    public StoreEntity modify(long id, StoreEntity storeEntity, boolean updateGood, boolean updateAddress) {
+        StoreEntity origin = null;
+        if (!updateGood) {
+            origin = storeDao.getById(id);
+            storeEntity.setGoods(origin.getGoods());
+        }
+        if (!updateAddress) {
+            if (origin == null){
+                origin = storeDao.getById(id);
+            }
+            storeEntity.setAddress(origin.getAddress());
+        }
+        System.out.println(storeEntity);
         return storeDao.modify(id, storeEntity);
     }
 
