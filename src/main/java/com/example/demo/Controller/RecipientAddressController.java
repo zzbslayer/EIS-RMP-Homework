@@ -27,8 +27,8 @@ public class RecipientAddressController {
     }
 
     @PostMapping("")
-    public RecipientAddressEntity create(@RequestBody RecipientAddressEntity recipientAddressEntity){
-        return recipientAddressService.create(recipientAddressEntity);
+    public RecipientAddressEntity create(@RequestBody RecipientAddressEntity recipientAddressEntity, @RequestParam(defaultValue = "true") boolean createAddress){
+        return recipientAddressService.create(recipientAddressEntity, createAddress);
     }
 
     @PutMapping("/{id}")
@@ -37,8 +37,8 @@ public class RecipientAddressController {
     }
 
     @PostMapping("/user/{userId}")
-    public RecipientAddressEntity createByUserId(@PathVariable long userId, @PathVariable long recipientAddressId, @RequestBody RecipientAddressEntity recipientAddressEntity){
-        return recipientAddressService.createByUserId(userId, recipientAddressEntity);
+    public RecipientAddressEntity createByUserId(@PathVariable long userId, @PathVariable long recipientAddressId, @RequestBody RecipientAddressEntity recipientAddressEntity, @RequestParam(defaultValue = "true") boolean createAddress){
+        return recipientAddressService.createByUserId(userId, recipientAddressEntity, createAddress);
     }
 
     @DeleteMapping("/user/{userId}/recipientAddress/{recipientAddressId}")

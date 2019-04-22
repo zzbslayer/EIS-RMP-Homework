@@ -16,7 +16,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/{id}")
-    public UserEntity getUserById(@PathVariable long id){
+    public UserEntity getById(@PathVariable long id){
         return userService.getById(id);
     }
 
@@ -33,5 +33,15 @@ public class UserController {
     @PutMapping("/{id}")
     public UserEntity modifyUser(@PathVariable long id, @RequestBody UserEntity userEntity){
         return userService.modify(id, userEntity);
+    }
+
+    @GetMapping("/phone/{phone}")
+    public UserEntity getByPhone(@PathVariable String phone){
+        return userService.getByPhone(phone);
+    }
+
+    @PostMapping("/login")
+    public UserEntity login(@RequestBody UserEntity userEntity){
+        return userService.login(userEntity);
     }
 }

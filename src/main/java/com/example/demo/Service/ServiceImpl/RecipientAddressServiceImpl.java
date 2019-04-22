@@ -1,7 +1,9 @@
 package com.example.demo.Service.ServiceImpl;
 
+import com.example.demo.Dao.DaoImpl.AddressDao;
 import com.example.demo.Dao.DaoImpl.RecipientAddressDao;
 import com.example.demo.Dao.DaoImpl.UserDao;
+import com.example.demo.Domain.Entity.AddressEntity;
 import com.example.demo.Domain.Entity.RecipientAddressEntity;
 import com.example.demo.Domain.Entity.UserEntity;
 import com.example.demo.Domain.Utils.RmpReturnValue;
@@ -17,6 +19,8 @@ public class RecipientAddressServiceImpl implements RecipientAddressService{
     private RecipientAddressDao recipientAddressDao;
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private AddressDao addressDao;
 
     @Override
     public RecipientAddressEntity getById(long id) {
@@ -24,7 +28,11 @@ public class RecipientAddressServiceImpl implements RecipientAddressService{
     }
 
     @Override
-    public RecipientAddressEntity create(RecipientAddressEntity recipientAddressEntity) {
+    public RecipientAddressEntity create(RecipientAddressEntity recipientAddressEntity, boolean createAddress) {
+        if (createAddress){
+            AddressEntity addressEntity = addressDao.create(recipientAddressEntity.getAddress());
+            recipientAddressEntity.setAddress(addressEntity);
+        }
         return recipientAddressDao.create(recipientAddressEntity);
     }
 
@@ -39,8 +47,8 @@ public class RecipientAddressServiceImpl implements RecipientAddressService{
     }
 
     @Override
-    public RecipientAddressEntity createByUserId(long userid, RecipientAddressEntity recipientAddressEntity) {
-        RecipientAddressEntity r = recipientAddressDao.create(recipientAddressEntity);
+    public RecipientAddressEntity createByUserId(long userid, RecipientAddressEntity recipientAddressEntity, boolean createAddress) {
+        RecipientAddressEntity r = this.create(recipientAddressEntity, createAddress);
         UserEntity userEntity = userDao.getById(userid);
         List<RecipientAddressEntity> address = userEntity.getAddress();
         address.add(r);

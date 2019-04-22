@@ -12,4 +12,8 @@ public interface UserService {
     UserEntity modify(long id, UserEntity userEntity);
 
     List<UserEntity> getAll();
+
+    UserEntity getByPhone(String phone);
+
+    UserEntity login(UserEntity userEntity);
 }

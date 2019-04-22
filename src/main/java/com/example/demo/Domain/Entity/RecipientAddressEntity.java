@@ -46,11 +46,23 @@ public class RecipientAddressEntity implements EntityInterface{
         this.address = address;
     }
 
+    public AddressEntity getAddress() {
+        return address;
+    }
+
     public void setContact(String contact) {
         this.contact = contact;
     }
 
+    public String getContact() {
+        return contact;
+    }
+
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getPhone() {
+        return phone;
     }
 }

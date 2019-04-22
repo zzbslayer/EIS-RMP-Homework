@@ -9,13 +9,13 @@ import java.util.List;
 public interface RecipientAddressService {
     RecipientAddressEntity getById(long id);
 
-    RecipientAddressEntity create(RecipientAddressEntity recipientAddressEntity);
+    RecipientAddressEntity create(RecipientAddressEntity recipientAddressEntity, boolean createAddress);
 
     RecipientAddressEntity modify(long id, RecipientAddressEntity recipientAddressEntity);
 
     List<RecipientAddressEntity> getAll();
 
-    RecipientAddressEntity createByUserId(long userid, RecipientAddressEntity recipientAddressEntity);
+    RecipientAddressEntity createByUserId(long userid, RecipientAddressEntity recipientAddressEntity, boolean createAddress);
 
     RmpReturnValue delete(long addressid);
 
