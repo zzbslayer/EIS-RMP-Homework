@@ -54,12 +54,13 @@ public class AddressEntity extends AbstractCoordinate implements EntityInterface
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
+        sb.append("{\"address\":");
         sb.append(address);
-        sb.append("\t(");
+        sb.append(", \"longitude\":");
         sb.append(getLongitude());
-        sb.append(", ");
+        sb.append(", \"latitude\":");
         sb.append(getLatitude());
-        sb.append(")");
+        sb.append("}");
         return sb.toString();
     }
 

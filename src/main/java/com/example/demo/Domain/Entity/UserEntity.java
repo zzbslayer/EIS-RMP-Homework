@@ -13,7 +13,7 @@ public class UserEntity implements EntityInterface {
     private String phone;
     private String password;
     private String avatar;
-    private List<RecipientAddressEntity> address;
+    private List<RecipientAddressEntity> recipientaddress;
 
     public UserEntity() {}
 
@@ -57,12 +57,12 @@ public class UserEntity implements EntityInterface {
         this.avatar = avatar;
     }
 
-    public List<RecipientAddressEntity> getAddress() {
-        return address;
+    public List<RecipientAddressEntity> getRecipientaddress() {
+        return recipientaddress;
     }
 
-    public void setAddress(List<RecipientAddressEntity> address) {
-        this.address = address;
+    public void setRecipientaddress(List<RecipientAddressEntity> address) {
+        this.recipientaddress = address;
     }
 
     @Override
@@ -72,7 +72,7 @@ public class UserEntity implements EntityInterface {
         json.put("phone", phone);
         json.put("password", password);
         json.put("avatar", CONSTANT.DEFAULT_AVATAR);
-        json.put("address", new JSONArray());
+        json.put("recipientaddress", new JSONArray());
         return json;
     }
 
@@ -80,7 +80,7 @@ public class UserEntity implements EntityInterface {
     public JSONObject modifyRequestBody() {
         JSONObject json = createRequestBody();
         json.put("avatar", avatar);
-        json.put("address", address);
+        json.put("recipientaddress", recipientaddress);
         json.put("id", id);
         return json;
     }

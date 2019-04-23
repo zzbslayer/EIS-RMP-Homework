@@ -25,8 +25,12 @@ public class OrderDao implements DaoInterface<Long, OrderEntity> {
 
     public OrderEntity create(OrderEntity orderEntity) {
         JSONObject jsonParam = orderEntity.createRequestBody();
+        System.out.println("[OrderDao.create][param]: ");
+        System.out.println(jsonParam.toString());
         String url = CONSTANT.RMP_ORDER_API;
         String data = HttpRequest.requestWithBody(HttpRequest.METHOD_POST, jsonParam, url);
+        System.out.println("[Order.create][result]: ");
+        System.out.println(data.toString());
         return JsonHelper.jsonStringToObject(data, OrderEntity.class);
     }
 
@@ -50,6 +54,8 @@ public class OrderDao implements DaoInterface<Long, OrderEntity> {
             [{...},{...}]
          */
         JSONArray json = JSONObject.parseObject(data).getJSONArray("Order");
+        if (json == null)
+            return new ArrayList<>();
         return JsonHelper.jsonStringToList(json.toString(), OrderEntity.class);
     }
 

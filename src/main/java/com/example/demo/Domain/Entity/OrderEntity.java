@@ -1,12 +1,28 @@
 package com.example.demo.Domain.Entity;
 
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.example.demo.Domain.EntityInterface;
+import org.springframework.core.annotation.Order;
 
 import java.util.List;
 
 public class OrderEntity implements EntityInterface {
+
+    public static OrderEntity create(OrderProxy orderProxy){
+        OrderEntity res = new OrderEntity();
+        res.id = orderProxy.getId();
+        res.address = orderProxy.getAddress();
+        res.goumai = orderProxy.getBuyer();
+        res.daigou = orderProxy.getProxy();
+        res.goods = orderProxy.getGoods();
+        res.goodsprice = orderProxy.getGoodsprice();
+        res.proxyprice = orderProxy.getProxyprice();
+        res.shijian = orderProxy.getModifiedtime();
+        res.recipientaddress = orderProxy.getRecipient();
+        res.orderstatus = orderProxy.getStatus();
+        res.store = orderProxy.getStore();
+        return res;
+    }
 
     public RecipientAddressEntity getRecipientaddress() {
         return recipientaddress;
@@ -29,14 +45,14 @@ public class OrderEntity implements EntityInterface {
     }
 
     private long id;
-    private UserEntity buyer;
-    private UserEntity proxy;
+    private UserEntity goumai;
+    private UserEntity daigou;
     private RecipientAddressEntity recipientaddress;
     private List<GoodEntity> goods;
     private double goodsprice;
     private double proxyprice;
-    private String modifiedtime;
-    private OrderEntity.Status status;
+    private String shijian;
+    private OrderEntity.Status orderstatus;
     private StoreEntity store;
     private AddressEntity address;
 
@@ -80,53 +96,54 @@ public class OrderEntity implements EntityInterface {
         this.id = id;
     }
 
-    public UserEntity getBuyer() {
-        return buyer;
+    public UserEntity getGoumai() {
+        return goumai;
     }
 
-    public void setBuyer(UserEntity buyer) {
-        this.buyer = buyer;
+    public void setGoumai(UserEntity goumai) {
+        this.goumai = goumai;
     }
 
-    public UserEntity getProxy() {
-        return proxy;
+    public UserEntity getDaigou() {
+        return daigou;
     }
 
-    public void setProxy(UserEntity proxy) {
-        this.proxy = proxy;
+    public void setDaigou(UserEntity daigou) {
+        this.daigou = daigou;
     }
 
-    public String getModifiedtime() {
-        return modifiedtime;
+    public String getShijian() {
+        return shijian;
     }
 
-    public void setModifiedtime(String modifiedtime) {
-        this.modifiedtime = modifiedtime;
+    public void setShijian(String shijian) {
+        this.shijian = shijian;
     }
 
-    public Status getStatus() {
-        return status;
+    public Status getOrderstatus() {
+        return orderstatus;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
+    public void setOrderstatus(Status orderstatus) {
+        this.orderstatus = orderstatus;
     }
 
     @Override
     public JSONObject createRequestBody() {
         JSONObject json = new JSONObject();
         /*
-        JSONObject buyer = new JSONObject();
-        buyer.put("id", buyerId);
-        JSONObject proxy = new JSONObject();
-        proxy.put("id", proxyId);*/
-        json.put("buyer", buyer);
-        json.put("proxy", proxy);
-        json.put("modifiedtime", modifiedtime);
-        json.put("status", Status.WAITING);
+        JSONObject goumai = new JSONObject();
+        goumai.put("id", buyerId);
+        JSONObject daigou = new JSONObject();
+        daigou.put("id", proxyId);*/
+        json.put("goumai", goumai);
+        json.put("daigou", daigou);
+        json.put("shijian", shijian);
+        json.put("orderstatus", Status.WAITING);
         json.put("goodsprice", goodsprice);
         json.put("proxyprice", proxyprice);
         json.put("goods", goods);
+        json.put("address", address);
         json.put("recipientaddress", recipientaddress);
         json.put("store", store);
 
@@ -136,7 +153,7 @@ public class OrderEntity implements EntityInterface {
     @Override
     public JSONObject modifyRequestBody() {
         JSONObject json = createRequestBody();
-        json.put("status", status);
+        json.put("orderstatus", orderstatus);
         json.put("id", id);
         return json;
     }

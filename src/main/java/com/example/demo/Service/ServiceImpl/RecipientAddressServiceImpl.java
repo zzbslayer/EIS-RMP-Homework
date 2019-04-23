@@ -49,9 +49,12 @@ public class RecipientAddressServiceImpl implements RecipientAddressService{
     @Override
     public RecipientAddressEntity createByUserId(long userid, RecipientAddressEntity recipientAddressEntity, boolean createAddress) {
         RecipientAddressEntity r = this.create(recipientAddressEntity, createAddress);
+        System.out.println("createByUserId:"+r);
         UserEntity userEntity = userDao.getById(userid);
-        List<RecipientAddressEntity> address = userEntity.getAddress();
+        System.out.println("createByUserId:"+userEntity);
+        List<RecipientAddressEntity> address = userEntity.getRecipientaddress();
         address.add(r);
+        userEntity.setRecipientaddress(address);
         userDao.modify(userid, userEntity);
         return r;
     }
@@ -64,7 +67,7 @@ public class RecipientAddressServiceImpl implements RecipientAddressService{
     @Override
     public RmpReturnValue deleteByUserId(long userid, long addressid) {
         UserEntity userEntity = userDao.getById(userid);
-        List<RecipientAddressEntity> addresses = userEntity.getAddress();
+        List<RecipientAddressEntity> addresses = userEntity.getRecipientaddress();
         int i = 0;
         for (RecipientAddressEntity r: addresses){
             if (r.getId() == addressid){
@@ -73,7 +76,7 @@ public class RecipientAddressServiceImpl implements RecipientAddressService{
             i++;
         }
         addresses.remove(i);
-        userEntity.setAddress(addresses);
+        userEntity.setRecipientaddress(addresses);
         userDao.modify(userid, userEntity);
         return recipientAddressDao.delete(addressid);
     }

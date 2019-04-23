@@ -42,13 +42,16 @@ public class StoreServiceImpl implements StoreService {
             origin = storeDao.getById(id);
             storeEntity.setGoods(origin.getGoods());
         }
-        if (!updateAddress) {
-            if (origin == null){
+        if (updateAddress) {
+            AddressEntity addressEntity = storeEntity.getAddress();
+            addressDao.modify(addressEntity.getId(), addressEntity);
+        }
+        else{
+            if (origin == null)
                 origin = storeDao.getById(id);
-            }
             storeEntity.setAddress(origin.getAddress());
         }
-        System.out.println(storeEntity);
+        //System.out.println(storeEntity);
         return storeDao.modify(id, storeEntity);
     }
 

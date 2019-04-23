@@ -26,8 +26,12 @@ public class AddressDao implements DaoInterface<Long, AddressEntity> {
 
     public AddressEntity create(AddressEntity addressEntity) {
         JSONObject jsonParam = addressEntity.createRequestBody();
+        System.out.println("[AddressDao.create][param]: ");
+        System.out.println(jsonParam.toString());
         String url = CONSTANT.RMP_ADDRESS_API;
         String data = HttpRequest.requestWithBody(HttpRequest.METHOD_POST, jsonParam, url);
+        System.out.println("[Address.create][result]: ");
+        System.out.println(data.toString());
         return JsonHelper.jsonStringToObject(data, AddressEntity.class);
     }
 

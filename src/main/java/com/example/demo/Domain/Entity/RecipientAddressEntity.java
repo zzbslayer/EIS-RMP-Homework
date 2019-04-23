@@ -8,6 +8,7 @@ public class RecipientAddressEntity implements EntityInterface{
     private AddressEntity address;
     private String contact;
     private String phone;
+    private String detaillocation;
 
     @Override
     public JSONObject createRequestBody() {
@@ -18,6 +19,7 @@ public class RecipientAddressEntity implements EntityInterface{
 
         json.put("address", address);
         json.put("contact", contact);
+        json.put("detaillocation", detaillocation);
         json.put("phone", phone);
         return json;
     }
@@ -31,7 +33,15 @@ public class RecipientAddressEntity implements EntityInterface{
 
     @Override
     public String toString() {
-        return address.toString();
+        StringBuilder sb = new StringBuilder();
+        sb.append("{\"address\":");
+        sb.append(address.toString());
+        sb.append(", \"contact\":");
+        sb.append(contact);
+        sb.append(", \"phone\":");
+        sb.append(phone);
+        sb.append("}");
+        return sb.toString();
     }
 
     public long getId() {
@@ -64,5 +74,13 @@ public class RecipientAddressEntity implements EntityInterface{
 
     public String getPhone() {
         return phone;
+    }
+
+    public String getDetaillocation() {
+        return detaillocation;
+    }
+
+    public void setDetaillocation(String detaillocation) {
+        this.detaillocation = detaillocation;
     }
 }

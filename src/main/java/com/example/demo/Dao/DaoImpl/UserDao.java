@@ -32,8 +32,12 @@ public class UserDao implements DaoInterface<Long, UserEntity> {
 
     public UserEntity modify(Long id, UserEntity userEntity) {
         JSONObject jsonParam = userEntity.modifyRequestBody();
+        System.out.println("[UserDao.modify][param]: ");
+        System.out.println(jsonParam.toString());
         String url= CONSTANT.RMP_USER_API + String.valueOf(id);
         String data = HttpRequest.requestWithBody(HttpRequest.METHOD_PUT, jsonParam, url);
+        System.out.println("[UserDao.modify][result]: ");
+        System.out.println(data.toString());
         return JsonHelper.jsonStringToObject(data, UserEntity.class);
     }
 

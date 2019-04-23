@@ -37,7 +37,7 @@ public class RecipientAddressController {
     }
 
     @PostMapping("/user/{userId}")
-    public RecipientAddressEntity createByUserId(@PathVariable long userId, @PathVariable long recipientAddressId, @RequestBody RecipientAddressEntity recipientAddressEntity, @RequestParam(defaultValue = "true") boolean createAddress){
+    public RecipientAddressEntity createByUserId(@PathVariable long userId, @RequestBody RecipientAddressEntity recipientAddressEntity, @RequestParam(defaultValue = "true") boolean createAddress){
         return recipientAddressService.createByUserId(userId, recipientAddressEntity, createAddress);
     }
 

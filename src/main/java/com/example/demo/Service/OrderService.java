@@ -16,4 +16,5 @@ public interface OrderService {
     List<OrderEntity> getNearby(double longitude, double latitude);
 
     List<OrderEntity> getByUserId(long id);
+    List<OrderEntity> getByProxyId(long id);
 }
